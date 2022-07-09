@@ -1,8 +1,6 @@
 # ucs-common
 [![](https://jitpack.io/v/Macrow/ucs-common.svg)](https://jitpack.io/#Macrow/ucs-common)
 
-```ucs```集成```SpringBoot```基础开发
-
 ## 快速开始
 
 ### 添加安装源
