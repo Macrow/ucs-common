@@ -59,30 +59,22 @@ public class QueryDefUtil {
                     if (ObjectUtil.isNotEmpty(joinName)) {
                         String[] joinNames = joinName.split(">");
                         for (String name : joinNames) {
+                            JoinType joinType = JoinType.LEFT;
                             switch (q.join()) {
                                 case LEFT:
-                                    if (ObjectUtil.isNotNull(join) && ObjectUtil.isNotNull(val)) {
-                                        join = join.join(name, JoinType.LEFT);
-                                    } else {
-                                        join = root.join(name, JoinType.LEFT);
-                                    }
+                                    joinType = JoinType.LEFT;
                                     break;
                                 case RIGHT:
-                                    if (ObjectUtil.isNotNull(join) && ObjectUtil.isNotNull(val)) {
-                                        join = join.join(name, JoinType.RIGHT);
-                                    } else {
-                                        join = root.join(name, JoinType.RIGHT);
-                                    }
+                                    joinType = JoinType.RIGHT;
                                     break;
                                 case INNER:
-                                    if (ObjectUtil.isNotNull(join) && ObjectUtil.isNotNull(val)) {
-                                        join = join.join(name, JoinType.INNER);
-                                    } else {
-                                        join = root.join(name, JoinType.INNER);
-                                    }
+                                    joinType = JoinType.INNER;
                                     break;
                                 default:
                                     break;
+                            }
+                            if (ObjectUtil.isNotNull(join) && ObjectUtil.isNotNull(val)) {
+                                join = join.join(name, joinType);
                             }
                         }
                     }
