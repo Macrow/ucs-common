@@ -1,6 +1,7 @@
 package io.ucs.common.base;
 
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.PageRequest;
@@ -22,8 +23,8 @@ import java.util.Map;
  * @desc 针对Ant Design进行分页排序查询
  */
 public class AntDesignPageQuery implements Serializable {
-    private static final String ASC = "ascend";
-    private static final String DESC = "descend";
+    public static final String ASC = "ascend";
+    public static final String DESC = "descend";
 
     private static final Integer PAGE_SIZE_DEFAULT = 10;
     private static final Integer CURRENT_DEFAULT = 1;
@@ -52,13 +53,18 @@ public class AntDesignPageQuery implements Serializable {
         return this.page;
     }
 
-    public Pageable pageable(String columnName, Sort.Direction directionDefault) {
+    public Pageable jpaPageable(String columnName, Sort.Direction directionDefault) {
         this.sortDefault = columnName;
         this.directionDefault = directionDefault;
-        return pageable();
+        return jpaPageable();
     }
 
-    public <T> Pageable pageable(SFunction<T, ?> columnFn, Sort.Direction directionDefault) {
+    public <T> Page<T> myBatisPlusPage(String columnName) {
+        this.sortDefault = columnName;
+        return myBatisPlusPageable();
+    }
+
+    public <T> Pageable jpaPageable(SFunction<T, ?> columnFn, Sort.Direction directionDefault) {
         // 从function取出序列化方法
         Method writeReplaceMethod;
         try {
@@ -80,7 +86,7 @@ public class AntDesignPageQuery implements Serializable {
         String fieldName = serializedLambda.getImplMethodName().substring("get".length());
         fieldName = fieldName.replaceFirst(fieldName.charAt(0) + "", (fieldName.charAt(0) + "").toLowerCase());
 
-        return pageable(fieldName, directionDefault);
+        return jpaPageable(fieldName, directionDefault);
     }
 
     public <T> AntDesignPageQuery addSort(SFunction<T, ?> columnFn, Sort.Direction sort) {
@@ -112,7 +118,7 @@ public class AntDesignPageQuery implements Serializable {
         return this;
     }
 
-    public Pageable pageable() {
+    public Pageable jpaPageable() {
         initializeByDefaultValue();
         Sort.Direction directionType;
         switch (order.toLowerCase()) {
@@ -135,6 +141,11 @@ public class AntDesignPageQuery implements Serializable {
             sortList.add(new Sort.Order(directionDefault, sortDefault));
         }
         return PageRequest.of(page - 1, pageSize, Sort.by(sortList));
+    }
+
+    public <T> Page<T> myBatisPlusPageable() {
+        initializeByDefaultValue();
+        return new Page<T>(page, pageSize);
     }
 
     private void initializeByDefaultValue() {

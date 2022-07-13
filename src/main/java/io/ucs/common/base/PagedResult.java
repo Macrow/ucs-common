@@ -34,6 +34,10 @@ public class PagedResult<T> {
         return new PagedResult<>(page.getContent(), page.getNumber(), page.getSize(), page.getTotalElements());
     }
 
+    public static <T> PagedResult<T> build(com.baomidou.mybatisplus.extension.plugins.pagination.Page<T> page) {
+        return new PagedResult<>(page.getRecords(), (int) page.getCurrent(), (int) page.getSize(), page.getTotal());
+    }
+
     @Data
     @Builder
     public static class Pagination {

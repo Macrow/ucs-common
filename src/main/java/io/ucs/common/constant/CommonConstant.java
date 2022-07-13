@@ -23,4 +23,5 @@ public interface CommonConstant {
     String AT_SPLITTER = "@";
     String LINE_SPLITTER = "-";
 
+    String MY_BATIS_PLUS_AUDIT_HANDLER = "auditMetaObjectHandler";
 }

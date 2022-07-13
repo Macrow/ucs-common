@@ -19,7 +19,8 @@
         <java-xid.version>1.0.0</java-xid.version>
         <hutool.version>5.8.3</hutool.version>
         <springboot.version>2.7.0</springboot.version>
-        <ucs-spring-boot-starter.version>2.4.2</ucs-spring-boot-starter.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <ucs-spring-boot-starter.version>2.4.3</ucs-spring-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -53,6 +54,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.Macrow</groupId>

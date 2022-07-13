@@ -18,7 +18,7 @@ import java.util.Date;
 @Setter
 @MappedSuperclass
 @EntityListeners(value = {XIdGeneratorListener.class, AuditingEntityListener.class})
-public abstract class AuditingEntity extends BaseEntity {
+public abstract class JpaAuditingEntity extends JpaBaseEntity {
     @CreatedDate
     @Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

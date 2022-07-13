@@ -1,5 +1,8 @@
 package io.ucs.common.base;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.ucs.common.annotation.XId;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +15,12 @@ import java.io.Serializable;
 
 /**
  * @author Macrow
- * @date 2022/06/10
+ * @date 2022/07/13
  */
 @Getter
 @Setter
 @MappedSuperclass
-@EntityListeners(value = {XIdGeneratorListener.class})
-public abstract class BaseEntity implements Serializable {
-    @Id
-    @XId
-    @Column(length = 20)
-    protected String id;
+public abstract class MyBatisBaseEntity implements Serializable {
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
 }
