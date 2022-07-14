@@ -194,7 +194,6 @@ public class QueryDefUtil {
                 QueryDef q = field.getAnnotation(QueryDef.class);
                 if (q != null) {
                     String propName = q.propName();
-                    String joinName = q.joinName();
                     String blurry = q.blurry();
                     String attributeName = isBlank(propName) ? field.getName() : propName;
                     Class<?> fieldType = field.getType();
@@ -232,16 +231,22 @@ public class QueryDefUtil {
                             queryWrapper.and(qw -> qw.ge(attributeName, (Comparable) val));
                             break;
                         case INNER_LIKE:
-                        case INNER_LIKE_IGNORE_CASE:
                             queryWrapper.and(qw -> qw.like(attributeName, val.toString()));
                             break;
+                        case INNER_LIKE_IGNORE_CASE:
+                            queryWrapper.and(qw -> qw.like("LOWER(" + attributeName + ")", val.toString().toLowerCase()));
+                            break;
                         case LEFT_LIKE:
-                        case LEFT_LIKE_IGNORE_CASE:
                             queryWrapper.and(qw -> qw.likeLeft(attributeName, val.toString()));
                             break;
+                        case LEFT_LIKE_IGNORE_CASE:
+                            queryWrapper.and(qw -> qw.likeLeft("LOWER(" + attributeName + ")", val.toString().toLowerCase()));
+                            break;
                         case RIGHT_LIKE:
-                        case RIGHT_LIKE_IGNORE_CASE:
                             queryWrapper.and(qw -> qw.likeRight(attributeName, val.toString()));
+                            break;
+                        case RIGHT_LIKE_IGNORE_CASE:
+                            queryWrapper.and(qw -> qw.likeRight("LOWER(" + attributeName + ")", val.toString().toLowerCase()));
                             break;
                         case IN:
                             // 用逗号分隔的字符串，转换为数组
