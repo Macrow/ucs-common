@@ -5,7 +5,7 @@
 
     <groupId>com.github.Macrow</groupId>
     <artifactId>ucs-common</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 
     <name>ucs-common</name>
     <description>ucs common package for springboot developing</description>
