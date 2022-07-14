@@ -1,6 +1,7 @@
 package io.ucs.common.base;
 
 import io.ucs.common.annotation.XId;
+import io.ucs.common.constant.CommonConstant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,6 @@ import java.io.Serializable;
 public abstract class JpaBaseEntity implements Serializable {
     @Id
     @XId
-    @Column(length = 20)
+    @Column(name = CommonConstant.ID_META_COLUMN, length = 20)
     protected String id;
 }

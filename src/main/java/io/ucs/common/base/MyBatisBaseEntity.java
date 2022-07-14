@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.ucs.common.annotation.XId;
+import io.ucs.common.constant.CommonConstant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,6 @@ import java.io.Serializable;
 @Setter
 @MappedSuperclass
 public abstract class MyBatisBaseEntity implements Serializable {
-    @TableId(type = IdType.ASSIGN_UUID)
+    @TableId(value = CommonConstant.ID_META_COLUMN, type = IdType.ASSIGN_UUID)
     private String id;
 }

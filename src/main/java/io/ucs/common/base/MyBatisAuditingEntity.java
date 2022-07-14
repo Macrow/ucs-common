@@ -2,6 +2,7 @@ package io.ucs.common.base;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import io.ucs.common.constant.CommonConstant;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,15 +21,15 @@ import java.util.Date;
 @Setter
 @MappedSuperclass
 public abstract class MyBatisAuditingEntity extends MyBatisBaseEntity {
-    @TableField(value = "created_at", fill = FieldFill.INSERT)
+    @TableField(value = CommonConstant.CREATED_AT_META_COLUMN, fill = FieldFill.INSERT)
     protected Date createdAt;
 
-    @TableField(value = "created_by", fill = FieldFill.INSERT)
+    @TableField(value = CommonConstant.CREATED_BY_META_COLUMN, fill = FieldFill.INSERT)
     protected String createdBy;
 
-    @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = CommonConstant.UPDATED_AT_META_COLUMN, fill = FieldFill.INSERT_UPDATE)
     protected Date updatedAt;
 
-    @TableField(value = "updated_by", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = CommonConstant.UPDATED_BY_META_COLUMN, fill = FieldFill.INSERT_UPDATE)
     protected String updatedBy;
 }

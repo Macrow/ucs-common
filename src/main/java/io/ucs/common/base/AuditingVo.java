@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,7 +17,8 @@ import java.util.Date;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuditingVo implements Serializable {
+@MappedSuperclass
+public abstract class AuditingVo implements Serializable {
     private String id;
     private Date createdAt;
     private Date updatedAt;
