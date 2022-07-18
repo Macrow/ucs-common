@@ -134,8 +134,8 @@ public class QueryDefUtil {
                             if (q.inListString()) {
                                 val = Arrays.stream(((String) val).split(STRING_JOINER_SPLITTER)).map(String::trim).collect(Collectors.toSet());
                             }
-                            if (CollUtil.isNotEmpty((Collection<Long>) val)) {
-                                list.add(getExpression(attributeName, join, root).in((Collection<Long>) val));
+                            if (CollUtil.isNotEmpty((Collection<String>) val)) {
+                                list.add(getExpression(attributeName, join, root).in((Collection<String>) val));
                             }
                             break;
                         case NOT_EQUAL:
@@ -254,6 +254,10 @@ public class QueryDefUtil {
                                 final Set<String> inCollection = Arrays.stream(((String) val).split(STRING_JOINER_SPLITTER)).map(String::trim).collect(Collectors.toSet());
                                 if (CollUtil.isNotEmpty(inCollection)) {
                                     queryWrapper.and(qw -> qw.in(attributeName, inCollection));
+                                }
+                            } else {
+                                if (CollUtil.isNotEmpty((Collection<String>) val)) {
+                                    queryWrapper.and(qw -> qw.in(attributeName, (Collection<String>) val));
                                 }
                             }
                             break;
