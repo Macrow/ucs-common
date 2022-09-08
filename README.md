@@ -1,3 +1,5 @@
+# deprecated
+
 # ucs-common
 [![](https://jitpack.io/v/Macrow/ucs-common.svg)](https://jitpack.io/#Macrow/ucs-common)
 

@@ -20,7 +20,7 @@
         <hutool.version>5.8.3</hutool.version>
         <springboot.version>2.7.0</springboot.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
-        <ucs-spring-boot-starter.version>2.4.3</ucs-spring-boot-starter.version>
+        <ucs-spring-boot-starter.version>2.5.0</ucs-spring-boot-starter.version>
     </properties>
 
     <dependencies>
